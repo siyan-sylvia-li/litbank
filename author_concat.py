@@ -14,6 +14,8 @@ if __name__ == "__main__":
     for a in author_dict:
         new_a_file = open("author_sentences/{f}.txt".format(f=a), "w+")
         for x in author_dict[a]:
-            f_s = glob.glob("sentences/{n}_*.txt".format(n=x))[0]
-            lines = open(f_s).readlines()
-            new_a_file.writelines(lines)
+            f_s = glob.glob("sentences/{n}-0.txt".format(n=x))
+            if len(f_s):
+                fa = f_s[0]
+                lines = open(fa).readlines()
+                new_a_file.writelines(lines)
