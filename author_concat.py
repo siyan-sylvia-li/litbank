@@ -12,10 +12,11 @@ if __name__ == "__main__":
         author_dict.update({author: ids})
     # now iterate through authors
     for a in author_dict:
-        new_a_file = open("author_sentences/{f}.txt".format(f=a), "w+")
         for x in author_dict[a]:
             f_s = glob.glob("sentences/{n}-0.txt".format(n=x))
             if len(f_s):
                 fa = f_s[0]
                 lines = open(fa).readlines()
-                new_a_file.writelines(lines)
+                if len(lines) > 1:
+                    new_a_file = open("author_sentences/{f}.txt".format(f=a), "a+")
+                    new_a_file.writelines(lines)
